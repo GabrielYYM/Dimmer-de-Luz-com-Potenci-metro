@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Simulador ESP32</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+
+<h1>Simulador ESP32</h1>
+
+<div class="panel">
+
+    <div class="esp32">ESP32</div>
+
+    <div class="component">
+        <div id="led" class="led"></div>
+        <p>LED</p>
+    </div>
+
+    <div class="component">
+        <div class="pot"></div>
+        <input type="range" id="slider" min="0" max="100" value="0">
+        <p>Potenciômetro</p>
+    </div>
+
+    <div class="component">
+        <div id="relay" class="relay">RELAY</div>
+    </div>
+
+    <div class="component">
+        <div id="lamp" class="lamp"></div>
+        <p>Lâmpada</p>
+    </div>
+
+</div>
+
+<script src="../static/script.js"></script>
+
+</body>
+</html>
