@@ -3,28 +3,19 @@ const led = document.getElementById("led");
 const relay = document.getElementById("relay");
 const lamp = document.getElementById("lamp");
 
-const THRESHOLD = 70;
-
-slider.addEventListener("input", () => {
+slider.addEventListener("input", async () => {
     let value = slider.value;
 
-    led.style.opacity = value / 100;
+    const response = await fetch('/update_slider', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ value: value })
+    });
 
-    if (value >= THRESHOLD) {
-        activateRelay();
-    } else {
-        deactivateRelay();
-    }
+    const data = await response.json();
+
+    led.style.opacity = data.led_opacity;
+    relay.style.background = data.relay_color;
+    lamp.style.background = data.lamp_color;
+    lamp.style.boxShadow = data.lamp_shadow;
 });
-
-function activateRelay() {
-    relay.style.background = "limegreen";
-    lamp.style.background = "yellow";
-    lamp.style.boxShadow = "0 0 30px yellow";
-}
-
-function deactivateRelay() {
-    relay.style.background = "darkred";
-    lamp.style.background = "#333";
-    lamp.style.boxShadow = "none";
-}
